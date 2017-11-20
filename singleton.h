@@ -19,7 +19,7 @@ struct Singleton {
   size_t get_count( void ) const { return m_count; }
   static size_t get_refs( void ) { return s_refs; }
 
-private: //delete doesn't need to be private, but it's of no interest publically either
+private: //deletes don't need to be private, but it's of no interest publically either
   Singleton( const Singleton& rhs ) = delete;  // copy constructor
   const Singleton& operator=( const Singleton& rhs ) = delete;  // copy assignment
   Singleton( const Singleton&& rhs ) = delete;  // move constructor
