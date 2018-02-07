@@ -3,6 +3,9 @@
 ifndef CXX
 CXX := clang++
 endif
+ifndef COPT
+COPT := -o3
+endif
 
 SRCS:=singleton.cpp main.cpp
 OBJS:=$(patsubst %.cpp,%.o,${SRCS})
@@ -28,7 +31,7 @@ compile: $(OBJS)
 
 %.o: %.cpp
 	@$(call Announce,Compiling '$*')
-	${CXX} -std=c++14 -o $*.o -c $*.cpp
+	${CXX} -std=c++14 ${COPT} -o $*.o -c $*.cpp
 
 link:
 	@$(call Announce,Linking)
