@@ -16,7 +16,7 @@ std::deque<size_t> finished;
 #include <condition_variable>
 std::mutex              go_mutex;
 std::condition_variable go_condition;
-bool                    go_ready = false;
+volatile bool           go_ready = false;
 
 #include <random>
 
