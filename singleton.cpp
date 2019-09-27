@@ -1,4 +1,4 @@
-//This is an example of using a singleton class usable with threads.
+//This is an example of using a "Meyers" singleton class usable with threads.
 
 #include "singleton.h"
 
@@ -11,6 +11,7 @@ Singleton& Singleton::instance( void )
 {
   ++s_refs;
   static Singleton instance{};
+  volatile int dummy{}; // Prevent optimization issues
   return instance;
 }
 
