@@ -7,31 +7,30 @@ std::mutex cout_mutex;
 std::atomic<size_t> Singleton::s_refs{0U};
 
 // This is the key method that returns the singleton reference
-Singleton& Singleton::instance( void )
+Singleton& Singleton::instance()
 {
   ++s_refs;
   static Singleton instance{};
-  volatile int dummy{}; // Prevent optimization issues
   return instance;
 }
 
-Singleton::Singleton( void ) // Default constructor
+Singleton::Singleton() // Default constructor
 {
   std::cout << "Constructing Singleton" << std::endl;
 }
 
-Singleton::~Singleton( void ) // Destructor
+Singleton::~Singleton() // Destructor
 {
   std::cout << "Destroying Singleton" << std::endl;
 }
 
-void Singleton::whoami( void )
+void Singleton::whoami()
 {
   std::lock_guard<std::mutex> lock( cout_mutex );
-  printf( "Singleton at @%p\n", this );
+  printf( "Singleton at @%p\n", static_cast<void*>(this) );
 }
 
-void Singleton::increment( void ) {
+void Singleton::increment() {
   ++m_count;
 }
 
